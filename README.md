@@ -753,6 +753,122 @@ Spring Data JPA, MyBatis, Spring Cloud Gateway
 
 </details>
 
+---
+- **REST-API(News) Definition Table**
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/1f58f7c5-84bd-4774-8fcc-ae6d37291607)
+
+
+<details>
+<summary>AH-News-001</summary>
+
+- **Request Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/30153165-0355-4ab3-bae6-730185418208)
+
+
+- **Request Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/ae39714f-9659-444a-a112-170787e5749e)
+
+
+- **Response Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/f6bd9ff2-784f-4b27-8e07-b08c20295942)
+
+
+- **Response Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/03d827fc-c29b-4dc8-be61-fc257fa2b589)
+
+</details>
+
+<details>
+<summary>AH-News-002</summary>
+
+- **Request Header**
+  ![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/ad72323f-d508-4905-8924-2fbaba854a50)
+
+- **Request Body**
+  ![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/afc95fa2-15cf-4fcf-b99a-344dba8230a3)
+
+- **Response Header**
+  ![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/b4018011-2822-4742-b5d5-3ea324a92ed0)
+
+- **Response Body**
+  ![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/d6924870-6c7d-4dd5-a9a4-02d2ad27b65d)
+
+
+</details>
+
+<details>
+<summary>AH-News-003</summary>
+
+- **Request Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/5c68e1e5-f237-4845-b3bf-67e1cf556e02)
+
+
+- **Request Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/7eb39173-01f4-4fb9-8810-4c45aa230c04)
+
+
+- **Response Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/c69ea215-f0e8-43e5-9fdf-6c7aecbfa693)
+
+
+- **Response Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/c37e0b4d-6443-4528-ace9-97ec0558e200)
+
+
+</details>
+
+<details>
+<summary>AH-News-004</summary>
+
+- **Request Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/2abfb133-032e-4806-a3d7-da70e3dd9526)
+
+
+- **Request Body**
+<br> none
+
+
+- **Response Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/2a7d7ecb-0f0f-44e2-a664-a50b42ba3ded)
+
+
+- **Response Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/666727c0-ad43-473b-9694-ca7282ce2169)
+
+</details>
+
+<details>
+<summary>AH-News-005</summary>
+
+- **Request Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/e94b8408-35e9-49d0-b89b-d5bca4bac090)
+
+
+- **Request Body**
+<br> none
+
+- **Response Header**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/a3a2388d-6e78-4c38-bb5c-ceb4452d4528)
+
+
+- **Response Body**
+  
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/40ca06d6-0685-481e-b5fe-ead7f32f121d)
+
+</details>
 
 </details>
 
