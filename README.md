@@ -830,7 +830,8 @@ Spring Data JPA, MyBatis, Spring Cloud Gateway
 
 - **Request Header**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/2abfb133-032e-4806-a3d7-da70e3dd9526)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/0e0e06f8-8515-47dc-8e20-89b96490a9e1)
+
 
 
 - **Request Body**
@@ -839,12 +840,14 @@ Spring Data JPA, MyBatis, Spring Cloud Gateway
 
 - **Response Header**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/2a7d7ecb-0f0f-44e2-a664-a50b42ba3ded)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/8583dbbc-8ca4-4c8e-9d28-6a15e5c6f835)
+
 
 
 - **Response Body**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/666727c0-ad43-473b-9694-ca7282ce2169)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/6f1fcedc-c4c2-4fe0-b8fc-8f6bd8bc01ff)
+
 
 </details>
 
@@ -853,7 +856,8 @@ Spring Data JPA, MyBatis, Spring Cloud Gateway
 
 - **Request Header**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/e94b8408-35e9-49d0-b89b-d5bca4bac090)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/f83c235a-71c7-4bf8-a344-12d5615258c4)
+
 
 
 - **Request Body**
@@ -861,12 +865,14 @@ Spring Data JPA, MyBatis, Spring Cloud Gateway
 
 - **Response Header**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/a3a2388d-6e78-4c38-bb5c-ceb4452d4528)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/f0b8c199-5a33-4226-a2bc-bf227460b9ab)
+
 
 
 - **Response Body**
   
-![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/108782390/40ca06d6-0685-481e-b5fe-ead7f32f121d)
+![image](https://github.com/4jo-Phoenix/Alcohol_hub/assets/113569573/11ec875c-08f8-4c67-af2f-5a1e0952cc81)
+
 
 </details>
 
