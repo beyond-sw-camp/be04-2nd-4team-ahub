@@ -3,7 +3,6 @@ package com.teamphoenix.ahub.post.command;
 import com.teamphoenix.ahub.post.command.dto.PostCategoryDTO;
 import com.teamphoenix.ahub.post.command.dto.PostDTO;
 import com.teamphoenix.ahub.post.command.service.PostServiceImpl;
-import com.teamphoenix.ahub.post.query.dto.LikePostAndPostDTO;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
