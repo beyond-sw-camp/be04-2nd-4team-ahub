@@ -55,11 +55,11 @@ Ahub 프로젝트의 산출 결과물은 다음과 같습니다.
 | 주관 | 불4조 (Team Phoenix) | 백엔드 프로젝트 |
 | 지원기관 | 한화시스템x엔코아 | 장비 지원 및 퀄리티 점검 |
 
-프로젝트 일정: 2024-02-26 ~ 2024-03-11
+**프로젝트 일정** : 2024-02-26 ~ 2024-03-11
 
-작업 공간: 서울 동작구 보라매로 SFC빌딩, 원격 소통
+**작업 공간** : 서울 동작구 보라매로 SFC빌딩, 원격 소통
 
-기술 스택: <img src ="https://img.shields.io/badge/MariaDB-&logo=MariaDB"/><img src="https://img.shields.io/badge/10.6-515151?style=for-the-badge" width="40" height="20"/> <img src="https://img.shields.io/badge/OpenJDK-&logo=openjdk"><img src="https://img.shields.io/badge/17.0.3-515151?style=for-the-badge" width="40" height="20"/>
+**기술 스택** : <img src ="https://img.shields.io/badge/MariaDB-&logo=MariaDB"/><img src="https://img.shields.io/badge/10.6-515151?style=for-the-badge" width="40" height="20"/> <img src="https://img.shields.io/badge/OpenJDK-&logo=openjdk"><img src="https://img.shields.io/badge/17.0.3-515151?style=for-the-badge" width="40" height="20"/>
 <img src ="https://img.shields.io/badge/Spring Boot-&logo=Spring Boot"/><img src="https://img.shields.io/badge/3.0.3-515151?style=for-the-badge" width="50" height="20"/> 
 <img src="https://img.shields.io/badge/Spring Security-&logo=spring security" width="70" height="20"/>
 <img src="https://img.shields.io/badge/Spring Data JPA-&logo=spring data jpa" width="100" height="20"/>
