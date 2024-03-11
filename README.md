@@ -188,7 +188,15 @@ Ahub 프로젝트의 산출 결과물은 다음과 같습니다.
 
 <details>
 <summary>Test Result</summary>
- 
+<br> 
+
+**CRUD** <br>
+ ![포스트서비스임플테스트](https://github.com/beyond-sw-camp/be04-2nd-4team-ahub/assets/153909291/be9d68f3-931e-4122-8b7d-3f356089bc71)
+
+
+**SELECT** <br>
+![포스트서비스테스트](https://github.com/beyond-sw-camp/be04-2nd-4team-ahub/assets/153909291/380c4f98-feea-40dd-ac2f-6f5a41570df2)
+
 
 </details>
 
