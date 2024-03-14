@@ -33,6 +33,14 @@ spring:
             - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
             - AuthorizationHeaderFilter
 
+        # Config refresh (Fair)
+        - id: fair-modify
+          uri: lb://FAIR-AND-NEWS-SERVICE
+          predicates:
+            - Path=/fairs/actuator/**
+          filters:
+            - RewritePath=/fairs/(?<segment>.*), /$\{segment}
+
         # News Service GET
         - id: news-get
           uri: lb://FAIR-AND-NEWS-SERVICE
