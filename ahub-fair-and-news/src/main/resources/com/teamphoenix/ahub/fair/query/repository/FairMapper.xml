@@ -44,7 +44,7 @@
             </if>
             <if test="fairTitle neq null and fairContent neq null">
                 F.fair_title LIKE CONCAT('%', #{fairTitle}, '%')
-            AND F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
+             OR F.fair_content LIKE CONCAT('%', #{fairContent}, '%')
             </if>
             <if test="memberCode neq 0">
                 F.member_code = #{memberCode}
