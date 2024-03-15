@@ -168,3 +168,5 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,java
+ahub-fair-and-news/.idea/modules/ahub-fair-and-news.main.iml
+ahub-fair-and-news/.idea/modules.xml
