@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,9 +35,8 @@ public class ReplyServiceImpl implements ReplyService{
     @Transactional
     @Override
     public List<ReplyDTO> registReply(ReplyDTO newReply) {
-        LocalDate localDate = LocalDate.now();
-        String dateFormat = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        newReply.setReplyDate(dateFormat);
+        LocalDateTime localDate = LocalDateTime.now();
+        newReply.setReplyDate(localDate);
         replyRespository.save(mapper.map(newReply, Reply.class));
         List<Reply> replies = replyRespository.findAll(Sort.by("replyId").descending());
 

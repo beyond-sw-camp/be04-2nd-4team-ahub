@@ -3,6 +3,8 @@ package com.teamphoenix.ahub.reply.command.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="reply")
 @AllArgsConstructor
@@ -24,7 +26,7 @@ public class Reply {
     private String replyContent;
 
     @Column(name="reply_date")
-    private String replyDate;
+    private LocalDateTime replyDate;
 
     @Column(name="report_acceptance")
     private int reportAcceptance;
