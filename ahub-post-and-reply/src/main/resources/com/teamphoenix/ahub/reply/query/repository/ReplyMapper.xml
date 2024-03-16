@@ -36,12 +36,4 @@
           FROM REPLY
         WHERE MEMBER_CODE = #{value}
     </select>
-
-
-
-
-
-
-
-
 </mapper>

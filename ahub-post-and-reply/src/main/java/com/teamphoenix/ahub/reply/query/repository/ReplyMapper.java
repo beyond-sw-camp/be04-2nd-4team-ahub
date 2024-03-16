@@ -8,7 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface ReplyMapper {
-    List<Reply> selectAllReply();
 
     List<Reply> selectAllReplyInBoard(int postId);
 

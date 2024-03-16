@@ -40,7 +40,7 @@ public class ReplyController {
     }
 
     @DeleteMapping("/delete/{replyId}")
-    public ResponseEntity<List<ReplyDTO>> deleteReply(@PathVariable int replyId){
+    public ResponseEntity<List<ReplyDTO>> deleteReply(@PathVariable int replyId) {
 
         List<ReplyDTO> replies = replyService.deleteReply(replyId);
 

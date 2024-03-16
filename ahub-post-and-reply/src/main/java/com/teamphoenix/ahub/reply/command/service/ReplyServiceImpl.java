@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service(value = "CommandReplyService")
 @Slf4j
-public class ReplyServiceImpl implements ReplyService{
+public class ReplyServiceImpl implements ReplyService {
 
     private final ModelMapper mapper;
     private final ReplyRepository replyRespository;
@@ -56,7 +57,7 @@ public class ReplyServiceImpl implements ReplyService{
     @Transactional
     @Override
     public List<ReplyDTO> deleteReply(int replyId) {
-       replyRespository.deleteById(replyId);
+        replyRespository.deleteById(replyId);
 
         List<Reply> replies = replyRespository.findAll(Sort.by("replyId").descending());
 
@@ -66,10 +67,8 @@ public class ReplyServiceImpl implements ReplyService{
     @Override
     public ReplyWithMemberNameVo getReplyWithMemberNameById(int memberId) {
         MemberResponse memberName = replyServiceClient.getMemberName(memberId);
-        System.out.println(memberName);
 
         Optional<Reply> reply = replyRespository.findById(memberId);
-        System.out.println(reply);
         ReplyWithMemberNameVo replyWithMemberNameVo = mapper.map(reply, ReplyWithMemberNameVo.class);
 
         replyWithMemberNameVo.setMemberName(memberName.getMemberName());
