@@ -1,35 +1,33 @@
 package com.teamphoenix.ahub.fair.command.vo;
 
 import java.time.LocalDate;
-import java.util.List;
 
-/* 게시글 작성시 화면으로부터 전달 받을 데이터들을 받는 클래스 */
-public class RequestRegist {
-
+public class RequestModify {
     private String fairTitle;
     private String fairContent;
-    private String fairStartdate;
-    private String fairEnddate;
+    private String fairLocation;
+    private String fairArea;
+    private LocalDate fairStartdate;
+    private LocalDate fairEnddate;
     private String fairTag1;
     private String fairTag2;
     private String fairTag3;
-    private String fairLocation;
-    private String fairArea;
 
-    public RequestRegist() {
+    public RequestModify() {
     }
 
-    public RequestRegist(String fairTitle, String fairContent, String fairStartdate, String fairEnddate,
-                         String fairTag1, String fairTag2, String fairTag3, String fairLocation, String fairArea) {
+    public RequestModify(String fairTitle, String fairContent, String fairLocation,
+                         String fairArea, LocalDate fairStartdate, LocalDate fairEnddate,
+                         String fairTag1, String fairTag2, String fairTag3) {
         this.fairTitle = fairTitle;
         this.fairContent = fairContent;
+        this.fairLocation = fairLocation;
+        this.fairArea = fairArea;
         this.fairStartdate = fairStartdate;
         this.fairEnddate = fairEnddate;
         this.fairTag1 = fairTag1;
         this.fairTag2 = fairTag2;
         this.fairTag3 = fairTag3;
-        this.fairLocation = fairLocation;
-        this.fairArea = fairArea;
     }
 
     public String getFairTitle() {
@@ -48,20 +46,36 @@ public class RequestRegist {
         this.fairContent = fairContent;
     }
 
-    public String getFairStartdate() {
+    public String getFairLocation() {
+        return fairLocation;
+    }
+
+    public void setFairLocation(String fairLocation) {
+        this.fairLocation = fairLocation;
+    }
+
+    public String getFairArea() {
+        return fairArea;
+    }
+
+    public void setFairArea(String fairArea) {
+        this.fairArea = fairArea;
+    }
+
+    public LocalDate getFairStartdate() {
         return fairStartdate;
     }
 
-    public void setFairStartdate(String fairStartDate) {
-        this.fairStartdate = fairStartDate;
+    public void setFairStartdate(LocalDate fairStarddate) {
+        this.fairStartdate = fairStarddate;
     }
 
-    public String getFairEnddate() {
+    public LocalDate getFairEnddate() {
         return fairEnddate;
     }
 
-    public void setFairEnddate(String fairEndDate) {
-        this.fairEnddate = fairEndDate;
+    public void setFairEnddate(LocalDate fairEnddate) {
+        this.fairEnddate = fairEnddate;
     }
 
     public String getFairTag1() {
@@ -88,34 +102,18 @@ public class RequestRegist {
         this.fairTag3 = fairTag3;
     }
 
-    public String getFairLocation() {
-        return fairLocation;
-    }
-
-    public void setFairLocation(String fairLocation) {
-        this.fairLocation = fairLocation;
-    }
-
-    public String getFairArea() {
-        return fairArea;
-    }
-
-    public void setFairArea(String fairArea) {
-        this.fairArea = fairArea;
-    }
-
     @Override
     public String toString() {
-        return "RequestRegist{" +
+        return "RequestModify{" +
                 "fairTitle='" + fairTitle + '\'' +
                 ", fairContent='" + fairContent + '\'' +
-                ", fairStartDate=" + fairStartdate +
-                ", fairEndDate=" + fairEnddate +
+                ", fairLocation='" + fairLocation + '\'' +
+                ", fairArea='" + fairArea + '\'' +
+                ", fairStartdate=" + fairStartdate +
+                ", fairEnddate=" + fairEnddate +
                 ", fairTag1='" + fairTag1 + '\'' +
                 ", fairTag2='" + fairTag2 + '\'' +
                 ", fairTag3='" + fairTag3 + '\'' +
-                ", fairLocation='" + fairLocation + '\'' +
-                ", fairArea='" + fairArea + '\'' +
                 '}';
     }
 }

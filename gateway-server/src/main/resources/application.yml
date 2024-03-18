@@ -116,14 +116,6 @@ spring:
           uri: lb://MEMBER-SERVICE
           predicates:
             - Path=/member/**
-            - Method=POST, PUT, DELETE
-
-        # Member Service GET 설정
-        - id: member-service
-          uri: lb://member-service
-          predicates:
-            - Path=/member/**
-            - Method=GET
 
         - id: post
           uri: lb://POSTREPLY-SERVER
