@@ -1,5 +1,6 @@
 package com.teamphoenix.ahub.member.query.dto;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,13 +20,16 @@ public class MemberDTO {
     private String memberAddr;
     private String memberPhone;
     private int blacklistStatus;
-
     private LocalDateTime restrictStartDate;
     private LocalDateTime restrictEndDate;
     private int loginFailCount;
-    private int accessAcceptancce;
+    private int accessAcceptance;
     private int withdrawalAcceptance;
     private int memberCategoryId;
+    private String memberIntroduction;
+    private String memberSnsId;
+    private String snsProvider;
+
     /* 설명. 전체 회원 조회용(관리자) */
     public MemberDTO(int memberCode, String memberId, String memberName, String memberPwd, String memberEmail, String memberAddr, String memberPhone, int blacklistStatus) {
         this.memberId = memberId;

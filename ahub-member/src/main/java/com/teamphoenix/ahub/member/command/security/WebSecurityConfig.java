@@ -2,6 +2,7 @@ package com.teamphoenix.ahub.member.command.security;
 
 import com.teamphoenix.ahub.member.command.service.MemberService;
 import jakarta.servlet.Filter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
