@@ -52,16 +52,22 @@ public class FairController {
     // 검색 조건에 해당하는 게시글 리스트 반환하는 메소드
     @GetMapping("/lists")
     public ResponseEntity<ResponseSearchList> findPostsByCondition(
-            @RequestParam(value = "st", required = false) String title,
-            @RequestParam(value = "sc", required = false) String content,
-            @RequestParam(value = "tc", required = false) String titleContent,
-            @RequestParam(value = "id", required = false) String id) {
+            @RequestParam(value = "search_type", required = false) String type,
+            @RequestParam(value = "search_condition", required = false) String condition) {
 
-        FairDTO searchInfo = new FairDTO(title, content, id);
-
-        if (titleContent != null) {
-            searchInfo.setFairTitle(titleContent);
-            searchInfo.setFairContent(titleContent);
+        FairDTO searchInfo = new FairDTO();
+        if(type.equals("titleContent")) {
+            searchInfo.setFairTitle(condition);
+            searchInfo.setFairContent(condition);
+        }
+        if(type.equals("title")) {
+            searchInfo.setFairTitle(condition);
+        }
+        if(type.equals("content")) {
+            searchInfo.setFairContent(condition);
+        }
+        if(type.equals("writerId")) {
+            searchInfo.setWriterId(condition);
         }
 
         List<FairDTO> resultList = fairService.findPostsByCondition(searchInfo);
@@ -84,7 +90,7 @@ public class FairController {
         List<ResponseList> responseLists = new ArrayList<>();
         for (FairDTO fairDTO : fairList) {
             ResponseList responseList = modelMapper.map(fairDTO, ResponseList.class);
-            String returnString = fairDTO.getFairContent().substring(0, Math.min(fairDTO.getFairContent().length(), 30));
+            String returnString = fairDTO.getFairContent().substring(0, Math.min(fairDTO.getFairContent().length(), 50)) + "...";
             responseList.setFairContent(returnString);
             String writeDate = fairDTO.getFairWritedate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             responseList.setFairWritedate(writeDate);
