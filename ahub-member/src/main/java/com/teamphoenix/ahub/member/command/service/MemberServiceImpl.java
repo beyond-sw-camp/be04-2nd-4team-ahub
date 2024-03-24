@@ -86,15 +86,20 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.deleteById(memberCode);
     }
 
+    // 토큰 발급을 위한 memberId 가져오는 메소드 추가
     @Override
-    public MemberDTO searchMember(String memberId) {
-
+    public MemberDTO getUserDetailsByUserId(String memberId) {
         MemberInfo memberInfo = memberRepository.findByMemberId(memberId);
-        MemberDTO memberDTO = modelMapper.map(memberInfo, MemberDTO.class);
+        if(memberInfo == null)
+            throw new UsernameNotFoundException(memberId);
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        MemberDTO memberDTO = mapper.map(memberInfo, MemberDTO.class);
 
         return memberDTO;
     }
-
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
 
@@ -108,4 +113,6 @@ public class MemberServiceImpl implements MemberService{
                 true, true, true, true,
                 new ArrayList<>());
     }
+
+
 }
