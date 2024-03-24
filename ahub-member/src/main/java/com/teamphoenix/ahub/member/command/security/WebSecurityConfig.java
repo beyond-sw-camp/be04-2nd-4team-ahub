@@ -45,6 +45,10 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests((auth) -> auth
                         .requestMatchers(new AntPathRequestMatcher("/member/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/member/findAllMembers/**")).hasRole("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/member/findByMemberCode/**")).hasRole("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/member/findByMemberId/**")).hasRole("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/member/findMyprofile/**")).hasRole("STANDARD")
                 )
                 .authenticationManager(authenticationManager);
 
