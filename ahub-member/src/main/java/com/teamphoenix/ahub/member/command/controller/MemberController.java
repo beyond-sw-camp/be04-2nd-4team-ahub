@@ -33,8 +33,11 @@ public class MemberController {
         MemberDTO newMemberInfo = modelMapper.map(newMember, MemberDTO.class);
         newMemberInfo.setMemberCategoryId(2);
 
-
-        memberService.registMember(newMemberInfo);
+//        final MemberDTO memberResult = memberService.registMember(newMemberInfo);
+//        final JwtToken token = AuthenticationFilter.generateToken(
+//          memberResult.getMemberId(),
+//          memberResult.getMemberPwd()
+//        );
         String newMemberId = newMemberInfo.getMemberId();
 
         log.info("컨트롤러에서 입력받은 회원가입 정보: {}", newMemberInfo);
@@ -42,6 +45,9 @@ public class MemberController {
         ResponseMember responseMember = new ResponseMember();
         responseMember.setMemberId(newMemberId);
         responseMember.setMessage(newMemberId + "님 회원 가입이 완료되었습니다.");
+//        responseMember.setStatus(200);
+//        responseMember.setToken(token.getToken());
+//        responseMember.setRefreshToken(token.getRefreshToken());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseMember);
     }
@@ -76,4 +82,9 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMember);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Boolean> logoutMember() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(true);
+    }
 }

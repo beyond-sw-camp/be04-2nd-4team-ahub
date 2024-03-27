@@ -31,7 +31,8 @@ public class MemberDTO {
     private String snsProvider;
 
     /* 설명. 전체 회원 조회용(관리자) */
-    public MemberDTO(int memberCode, String memberId, String memberName, String memberPwd, String memberEmail, String memberAddr, String memberPhone, int blacklistStatus) {
+    public MemberDTO(int memberCode, String memberId, String memberName, String memberPwd, String memberEmail, String memberAddr, String memberPhone, int blacklistStatus, int memberCategoryId) {
+        this.memberCode = memberCode;
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberPwd = memberPwd;
@@ -39,6 +40,7 @@ public class MemberDTO {
         this.memberAddr = memberAddr;
         this.memberPhone = memberPhone;
         this.blacklistStatus = blacklistStatus;
+        this.memberCategoryId = memberCategoryId;
     }
 
     /* 설명. 회원 프로필 조회용 */

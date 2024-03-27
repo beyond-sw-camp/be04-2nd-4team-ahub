@@ -27,8 +27,8 @@ import java.util.List;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private MemberService memberService;
-    private Environment environment;
+    private final MemberService memberService;
+    private final Environment environment;
 
     public AuthenticationFilter(AuthenticationManager authenticationManager, MemberService memberService, Environment environment) {
         super(authenticationManager);
@@ -36,12 +36,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         this.environment = environment;
     }
 
-    // 인증을 시도할 때 동작하는 메소드 : POST 요청으로 /login 들어오기 때문에 로그인 정보가 requestbody에 담겨온다.
+    // 인증을 시도할 때 동작하는 메소드 : POST 요청으로 /login 들어오기 때문에 로그인 정보가 request body에 담겨온다.
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         try {
-
             RequestLogin requestLogin =
                     new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
 

@@ -29,7 +29,7 @@ public class JwtUtil {
 
     public JwtUtil(
             @Value("${token.secret}") String secretKey,
-            @Value("{token.expiration_time}") long accessTokenExpTime,
+            @Value("${token.expiration_time}") long accessTokenExpTime,
             MemberService memberService) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
@@ -94,6 +94,6 @@ public class JwtUtil {
             log.info("JWT claims strig si empty {}", e);
         }
 
-        return true;
+        return false;
     }
 }

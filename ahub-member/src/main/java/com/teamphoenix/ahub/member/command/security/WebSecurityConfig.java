@@ -11,8 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -23,13 +25,17 @@ public class WebSecurityConfig {
     private final Environment environment;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private JwtUtil jwtUtil;
+
     @Autowired
     public WebSecurityConfig(MemberService memberService,
                              Environment environment,
-                             BCryptPasswordEncoder bCryptPasswordEncoder) {
+                             BCryptPasswordEncoder bCryptPasswordEncoder,
+                             JwtUtil jwtUtil) {
         this.memberService = memberService;
         this.environment = environment;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
     @Bean
@@ -49,14 +55,18 @@ public class WebSecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/member/findByMemberCode/**")).hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/member/findByMemberId/**")).hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/member/findMyprofile/**")).hasRole("STANDARD")
+                        .anyRequest().authenticated()
                 )
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .sessionManagement((session) -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilter(getAuthenticationFilter(authenticationManager));
+        http.addFilterBefore(new JwtFilter(memberService, jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-    private Filter getAuthenticationFilter(AuthenticationManager authenticationManager) {
+    private AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) {
 
         return new AuthenticationFilter(authenticationManager, memberService, environment);
     }
