@@ -70,5 +70,6 @@
                 F.member_code = #{memberCode}
             </if>
         </where>
+         ORDER BY F.fair_id DESC
     </select>
 </mapper>
