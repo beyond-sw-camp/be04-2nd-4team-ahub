@@ -62,6 +62,7 @@ public class JwtUtil {
 
     /* 구문 분석이 완료된 토큰에서 MemberId 추출하는 메소드 */
     private String getMemberId(String token) {
+        Claims claims = parseClaims(token);
         return parseClaims(token).getSubject();
     }
 
