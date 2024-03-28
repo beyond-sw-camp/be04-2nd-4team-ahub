@@ -46,5 +46,8 @@ public class Post {
     @Column(name="post_modify_date")
     private String postModifyDate;
 
+    @Column(name="member_nickname")
+    private String memberNickname;
+
 
 }

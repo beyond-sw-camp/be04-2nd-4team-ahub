@@ -14,9 +14,10 @@ public class ReplyDTO {
     private int replyId;
     private int postId;
     private String replyContent;
-    private LocalDateTime replyDate;
+    private String replyDate;
     private int reportAcceptance;
     private int useAcceptance;
     private int memberCode;
+    private String memberNickname;
 
 }

@@ -11,6 +11,7 @@
         <result property="reportAcceptance" column="REPORT_ACCEPTANCE"/>
         <result property="useAcceptance" column="USE_ACCEPTANCE"/>
         <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
     </resultMap>
     <select id="selectAllReplyInBoard" parameterType="_int" resultMap="replyResultMap" >
         SELECT
@@ -20,9 +21,11 @@
             REPLY_DATE,
             REPORT_ACCEPTANCE,
             USE_ACCEPTANCE,
-            MEMBER_CODE
+            MEMBER_CODE,
+            MEMBER_NICKNAME
           FROM REPLY
          WHERE POST_ID = #{post_id}
+         ORDER BY REPLY_DATE ASC;
     </select>
     <select id="selectReplyBySearch" parameterType="string" resultMap="replyResultMap" >
         SELECT

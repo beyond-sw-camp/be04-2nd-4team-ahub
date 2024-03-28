@@ -14,6 +14,8 @@ public class PostDTO {
     private String postContent;
     private String postDate;
     private int categoryId;
+    private String memberNickname;
+    private int countReply;
 
     public PostDTO() {
     }
@@ -32,7 +34,7 @@ public class PostDTO {
         this.memberCode = memberCode;
     }
 
-    public PostDTO(int useAcceptance, int likeAmount, int reportedAcceptance, int memberCode, String postModifyDate, int postId, String postTitle, String postContent, String postDate, int categoryId) {
+    public PostDTO(int useAcceptance, int likeAmount, int reportedAcceptance, int memberCode, String postModifyDate, int postId, String postTitle, String postContent, String postDate, int categoryId, String memberNickname, int countReply) {
         this.useAcceptance = useAcceptance;
         this.likeAmount = likeAmount;
         this.reportedAcceptance = reportedAcceptance;
@@ -43,6 +45,8 @@ public class PostDTO {
         this.postContent = postContent;
         this.postDate = postDate;
         this.categoryId = categoryId;
+        this.memberNickname = memberNickname;
+        this.countReply = countReply;
     }
 
     public int getUseAcceptance() {
@@ -125,6 +129,22 @@ public class PostDTO {
         this.categoryId = categoryId;
     }
 
+    public String getMemberNickname() {
+        return memberNickname;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
+
+    public int getCountReply() {
+        return countReply;
+    }
+
+    public void setCountReply(int countReply) {
+        this.countReply = countReply;
+    }
+
     @Override
     public String toString() {
         return "PostDTO{" +
@@ -132,12 +152,14 @@ public class PostDTO {
                 ", likeAmount=" + likeAmount +
                 ", reportedAcceptance=" + reportedAcceptance +
                 ", memberCode=" + memberCode +
-                ", postModifyDate=" + postModifyDate +
+                ", postModifyDate='" + postModifyDate + '\'' +
                 ", postId=" + postId +
                 ", postTitle='" + postTitle + '\'' +
                 ", postContent='" + postContent + '\'' +
-                ", postDate=" + postDate +
+                ", postDate='" + postDate + '\'' +
                 ", categoryId=" + categoryId +
+                ", memberNickname='" + memberNickname + '\'' +
+                ", countReply=" + countReply +
                 '}';
     }
 }

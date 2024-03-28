@@ -26,7 +26,7 @@ public class Reply {
     private String replyContent;
 
     @Column(name = "reply_date")
-    private LocalDateTime replyDate;
+    private String replyDate;
 
     @Column(name = "report_acceptance")
     private int reportAcceptance;
@@ -36,5 +36,8 @@ public class Reply {
 
     @Column(name = "member_code")
     private int memberCode;
+
+    @Column(name = "member_nickname")
+    private String memberNickname;
 
 }

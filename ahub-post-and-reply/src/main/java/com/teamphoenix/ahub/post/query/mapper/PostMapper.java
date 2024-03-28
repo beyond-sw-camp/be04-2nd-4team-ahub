@@ -22,5 +22,7 @@ public interface PostMapper {
 
     List<PostDTO> selectPostsByCondition(PostDTO searchInfo) ;
 
+    List<PostDTO> getAllPosts();
+
 //    List<postDTO> selectAllPosts();
 }

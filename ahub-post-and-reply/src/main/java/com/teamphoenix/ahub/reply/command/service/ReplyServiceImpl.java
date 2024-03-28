@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,7 +38,8 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public List<ReplyDTO> registReply(ReplyDTO newReply) {
         LocalDateTime localDate = LocalDateTime.now();
-        newReply.setReplyDate(localDate);
+        String dateFormat = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        newReply.setReplyDate(dateFormat);
         replyRespository.save(mapper.map(newReply, Reply.class));
         List<Reply> replies = replyRespository.findAll(Sort.by("replyId").descending());
 

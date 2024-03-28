@@ -16,5 +16,6 @@ public class Reply {
     private int reportAcceptance;
     private int useAcceptance;
     private int memberCode;
+    private String memberNickname;
 
 }
