@@ -33,40 +33,49 @@ public class FairServiceImpl implements FairService {
 
         FairDTO result = fairMapper.getFairPost(fairId);
 
-        ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
+        try {
+            ResponseMember responseMember = memberServiceClient.getWriterInfo(result.getMemberCode());
+            result.setWriterId(responseMember.getMemberId());
 
-        result.setWriterId(responseMember.getMemberId());
+            return result;
+        } catch(Exception e) {
+            return null;
+        }
 
-        return result;
     }
 
     public List<FairDTO> findPostsByCondition(FairDTO searchInfo) {
 
-        if (searchInfo.getWriterId() != null) {
-            String writerId = searchInfo.getWriterId();
-            int searchCode = memberServiceClient.getWriterCode(writerId);
-            searchInfo.setMemberCode(searchCode);
+        try{
+            if (searchInfo.getWriterId() != null) {
+                String writerId = searchInfo.getWriterId();
+                int searchCode = memberServiceClient.getWriterCode(writerId);
+                searchInfo.setMemberCode(searchCode);
+                System.out.println("searchCode = " + searchCode);
+            }
+
+            List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
+
+            List<String> codeList = new ArrayList<>();
+
+            for (FairDTO fairDTO : result) {
+                String writerCode = String.valueOf(fairDTO.getMemberCode());
+
+                codeList.add(writerCode);
+            }
+
+            List<String> idList = memberServiceClient.getWriterList(codeList);
+
+
+            for (int i = 0; i < result.size(); i++) {
+
+                FairDTO fairDTO = result.get(i);
+                fairDTO.setWriterId(idList.get(i));
+            }
+
+            return result;
+        } catch (Exception e) {
+         return null;
         }
-
-        List<FairDTO> result = fairMapper.selectPostsByCondition(searchInfo);
-
-        List<String> codeList = new ArrayList<>();
-
-        for (FairDTO fairDTO : result) {
-            String writerCode = String.valueOf(fairDTO.getMemberCode());
-
-            codeList.add(writerCode);
-        }
-
-        List<String> idList = memberServiceClient.getWriterList(codeList);
-
-
-        for (int i = 0; i < result.size(); i++) {
-
-            FairDTO fairDTO = result.get(i);
-            fairDTO.setWriterId(idList.get(i));
-        }
-
-        return result;
     }
 }
