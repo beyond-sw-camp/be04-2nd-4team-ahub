@@ -3,8 +3,10 @@ package com.teamphoenix.ahub.reply.command.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name="reply")
+@Table(name = "reply")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,26 +15,29 @@ import lombok.*;
 public class Reply {
 
     @Id
-    @Column(name="reply_id")
+    @Column(name = "reply_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int replyId;
 
-    @Column(name="post_id")
+    @Column(name = "post_id")
     private int postId;
 
-    @Column(name="reply_content")
+    @Column(name = "reply_content")
     private String replyContent;
 
-    @Column(name="reply_date")
+    @Column(name = "reply_date")
     private String replyDate;
 
-    @Column(name="report_acceptance")
+    @Column(name = "report_acceptance")
     private int reportAcceptance;
 
-    @Column(name="use_acceptance")
+    @Column(name = "use_acceptance")
     private int useAcceptance;
 
-    @Column(name="member_code")
+    @Column(name = "member_code")
     private int memberCode;
+
+    @Column(name = "member_nickname")
+    private String memberNickname;
 
 }

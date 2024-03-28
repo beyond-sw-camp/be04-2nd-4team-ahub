@@ -20,4 +20,5 @@ public interface PostService {
     List<PostDTO> findPostsByCondition(PostDTO searchInfo);
 
 
+    List<PostDTO> findAllPosts();
 }

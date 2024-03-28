@@ -8,9 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,15 +32,13 @@ public class JpaTest {
     public void 댓글_등록_테스트() {
         ReplyDTO registInfo = new ReplyDTO();
 
-        LocalDate localDate = LocalDate.now();
-        String dateFormat = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+        LocalDateTime localDate = LocalDateTime.now();
         List<Reply> beforeReplies = replyRepository.findAll();
         int firstReply = beforeReplies.get(beforeReplies.size()-1).getReplyId();
 
         registInfo.setPostId(2);
         registInfo.setReplyContent("test코드로 댓글추가 test하기~");
-        registInfo.setReplyDate(dateFormat);
+        registInfo.setReplyDate(localDate);
         registInfo.setReportAcceptance(0);
         registInfo.setUseAcceptance(1);
         registInfo.setMemberCode(2);

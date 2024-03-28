@@ -7,7 +7,7 @@ spring:
 #        native:
 #          search-locations: file:///C:\team4\
         git:
-          uri: file:///C:\study\test-config
+          uri: file:///C:\team4
 
 server:
   port: 8888

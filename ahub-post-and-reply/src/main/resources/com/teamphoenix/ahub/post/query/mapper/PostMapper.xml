@@ -13,6 +13,8 @@
         <result property="likeAmount" column="like_amount"/>
         <result property="memberCode" column="member_code"/>
         <result property="postModifyDate" column="post_modify_date"/>
+        <result property="memberNickname" column="member_nickname"/>
+        <result property="countReply" column="count_reply"/>
     </resultMap>
     <select id="selectPostsByMemberCode" resultMap="postResultMap" parameterType="_int">
         SELECT
@@ -26,6 +28,22 @@
         post_modify_date
         FROM post
         WHERE member_code = #{memberCode}
+    </select>
+
+    <select id="getAllPosts" resultMap="postResultMap">
+        SELECT
+        pt.post_id,
+        pt.post_title,
+        pt.post_content,
+        pt.post_date,
+        pt.category_id,
+        pt.like_amount,
+        pt.member_code,
+        pt.post_modify_date,
+        pt.member_nickname,
+        (select count(reply_content) from reply rp where rp.post_id = pt.post_id) as count_reply
+        FROM post pt
+        ORDER BY post_date asc;
     </select>
 
     <resultMap id="likePostAndPostResultMap" type="com.teamphoenix.ahub.post.query.dto.LikePostAndPostDTO">
@@ -124,15 +142,17 @@
         <result property="postContent" column="post_content"/>
     </resultMap>
 
-    <select id="getPost" parameterType="_int" resultMap="getOrdinaryView">
+    <select id="getPost" parameterType="_int" resultMap="postResultMap">
         SELECT
-        P.post_id
-        , P.post_title
-        , P.post_content
-        , P.post_date
-        , P.member_code
-        FROM post P
-        WHERE P.post_id = #{postId}
+        post_id
+        , post_title
+        , post_content
+        , post_date
+        , post_modify_date
+        , member_code
+        , member_nickname
+        FROM post
+        WHERE post_id = #{postId}
     </select>
 
     <select id="selectPostsByCondition" parameterType="com.teamphoenix.ahub.post.query.dto.PostDTO" resultMap="selectPostList">

@@ -3,11 +3,11 @@ POST localhost:8000/reply/regist
 Content-Type: application/json
 
 {
-  "postId" : 2,
-  "replyContent" : "댓글 추가 test!!!!!!!",
-  "reportAcceptance" : "0",
-  "useAcceptance" : "1",
-  "memberCode" : 2
+  "postId": 2,
+  "replyContent": "댓글 추가 test!!!!!!!",
+  "reportAcceptance": "0",
+  "useAcceptance": "1",
+  "memberCode": 2
 }
 
 ### 댓글 수정 TEST

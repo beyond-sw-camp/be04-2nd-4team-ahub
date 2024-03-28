@@ -37,6 +37,12 @@ public class PostController {
         return postService.selectPostsByMemberCode(memberCode);
     }
 
+    @GetMapping("/posts")
+    // 회원이 작성한 게시글 조회
+    public List<PostDTO> findAllPosts() {
+        return postService.findAllPosts();
+    }
+
     @GetMapping("/member/like/{memberCode}")
     // 회원이 좋아요한 게시글 조회
     public List<LikePostAndPostDTO> findPostsByLikeId(@PathVariable int memberCode) {
@@ -71,6 +77,7 @@ public class PostController {
         result.setUrl("http://localhost:8000/board/posts/lists");
         result.setResult(postDTO);
 
+        System.out.println(result);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

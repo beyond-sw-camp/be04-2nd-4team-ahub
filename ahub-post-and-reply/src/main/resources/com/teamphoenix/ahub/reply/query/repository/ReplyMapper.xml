@@ -11,8 +11,23 @@
         <result property="reportAcceptance" column="REPORT_ACCEPTANCE"/>
         <result property="useAcceptance" column="USE_ACCEPTANCE"/>
         <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
     </resultMap>
-    <select id="selectAllReply" resultMap="replyResultMap">
+    <select id="selectAllReplyInBoard" parameterType="_int" resultMap="replyResultMap" >
+        SELECT
+            REPLY_ID,
+            POST_ID,
+            REPLY_CONTENT,
+            REPLY_DATE,
+            REPORT_ACCEPTANCE,
+            USE_ACCEPTANCE,
+            MEMBER_CODE,
+            MEMBER_NICKNAME
+          FROM REPLY
+         WHERE POST_ID = #{post_id}
+         ORDER BY REPLY_DATE ASC;
+    </select>
+    <select id="selectReplyBySearch" parameterType="string" resultMap="replyResultMap" >
         SELECT
             REPLY_ID,
             POST_ID,
@@ -21,38 +36,19 @@
             REPORT_ACCEPTANCE,
             USE_ACCEPTANCE,
             MEMBER_CODE
-         FROM REPLY
-    </select>
-    <select id="selectAllReplyInBoard" parameterType="_int" resultMap="replyResultMap" >
-        SELECT
-            REPLY_CONTENT,
-            REPLY_DATE,
-            MEMBER_CODE
-          FROM REPLY
-         WHERE POST_ID = #{post_id}
-    </select>
-    <select id="selectReplyBySearch" parameterType="string" resultMap="replyResultMap" >
-        SELECT
-            REPLY_CONTENT,
-            REPLY_DATE,
-            MEMBER_CODE
           FROM REPLY
         WHERE REPLY_CONTENT LIKE CONCAT('%', #{value}, '%')
     </select>
     <select id="selectReplyByWriter" parameterType="_int" resultMap="replyResultMap" >
         SELECT
+            REPLY_ID,
+            POST_ID,
             REPLY_CONTENT,
             REPLY_DATE,
+            REPORT_ACCEPTANCE,
+            USE_ACCEPTANCE,
             MEMBER_CODE
           FROM REPLY
         WHERE MEMBER_CODE = #{value}
     </select>
-
-
-
-
-
-
-
-
 </mapper>

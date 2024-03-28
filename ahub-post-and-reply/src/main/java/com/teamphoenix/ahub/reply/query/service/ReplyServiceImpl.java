@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service(value = "QueryReplyService")
 @Slf4j
-public class ReplyServiceImpl implements ReplyService{
+public class ReplyServiceImpl implements ReplyService {
 
     private ReplyMapper replyMapper;
     private ModelMapper mapper;
@@ -28,7 +28,6 @@ public class ReplyServiceImpl implements ReplyService{
     @Override
     public List<ReplyDTO> selectAllReplyInBoard(int postId) {
         List<Reply> replies = replyMapper.selectAllReplyInBoard(postId);
-        replies.forEach(System.out::println);
 
         return replies.stream().map(reply -> mapper.map(reply, ReplyDTO.class)).collect(Collectors.toList());
     }
@@ -36,7 +35,6 @@ public class ReplyServiceImpl implements ReplyService{
     @Override
     public List<ReplyDTO> selectReplyBySearch(String searchingValue) {
         List<Reply> replies = replyMapper.selectReplyBySearch(searchingValue);
-        replies.forEach(System.out::println);
 
         return replies.stream().map(reply -> mapper.map(reply, ReplyDTO.class)).collect(Collectors.toList());
     }
@@ -44,7 +42,6 @@ public class ReplyServiceImpl implements ReplyService{
     @Override
     public List<ReplyDTO> selectReplyByWriter(int memberId) {
         List<Reply> replies = replyMapper.selectReplyByWriter(memberId);
-        replies.forEach(System.out::println);
 
         return replies.stream().map(reply -> mapper.map(reply, ReplyDTO.class)).collect(Collectors.toList());
     }

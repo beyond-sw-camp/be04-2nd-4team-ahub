@@ -34,8 +34,8 @@ public class PostController {
 //        newPost.setPostDate(LocalDateTime.now());
 //        newPost.setPostModifyDate(LocalDateTime.now());
 
-        LocalDate localDate = LocalDate.now();
-        String dateFormat = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDateTime localDate = LocalDateTime.now();
+        String dateFormat = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         newPost.setPostDate(dateFormat);
         newPost.setPostModifyDate(dateFormat);

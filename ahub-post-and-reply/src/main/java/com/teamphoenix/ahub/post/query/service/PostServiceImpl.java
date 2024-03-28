@@ -35,7 +35,10 @@ public class PostServiceImpl implements PostService {
         return result;
     }
 
-
+    public List<PostDTO> findAllPosts() {
+        List<PostDTO> result = postMapper.getAllPosts();
+        return result;
+    }
 
     public List<PostDTO> findPostsByCondition(PostDTO searchInfo) {
         List<PostDTO> result = postMapper.selectPostsByCondition(searchInfo);
