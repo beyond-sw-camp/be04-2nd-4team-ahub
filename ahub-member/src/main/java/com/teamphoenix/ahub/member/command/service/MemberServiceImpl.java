@@ -100,6 +100,15 @@ public class MemberServiceImpl implements MemberService{
 
         return memberDTO;
     }
+
+    @Override
+    public MemberDTO searchMember(String memberId) {
+
+        MemberInfo memberInfo = memberRepository.findByMemberId(memberId);
+        MemberDTO memberDTO = modelMapper.map(memberInfo, MemberDTO.class);
+
+        return memberDTO;
+    }
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
 

@@ -75,8 +75,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         Claims claims = Jwts.claims().setSubject(userDetails.getMemberId());
         claims.put("auth", roles);
 
+        MemberDTO memberDTO = memberService.searchMember(authResult.getName());
         /* 토큰 생성 */
         String token = Jwts.builder().setClaims(claims)
+                .setSubject(authResult.getName())
+                .setAudience(String.valueOf(memberDTO.getMemberCode()))
+                .claim("memberId", memberDTO.getMemberId())
                                     .setExpiration(new Date(System.currentTimeMillis() +
                                             Long.parseLong(environment.getProperty("token.expiration_time"))))
                                             .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret"))
