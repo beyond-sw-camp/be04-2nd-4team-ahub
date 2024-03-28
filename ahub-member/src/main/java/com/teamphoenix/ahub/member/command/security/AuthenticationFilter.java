@@ -79,7 +79,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         /* 토큰 생성 */
         String token = Jwts.builder().setClaims(claims)
                 .setSubject(authResult.getName())
-                .setAudience(String.valueOf(memberDTO.getMemberCode()))
+                .claim("memberCode", memberDTO.getMemberCode())
                 .claim("memberId", memberDTO.getMemberId())
                                     .setExpiration(new Date(System.currentTimeMillis() +
                                             Long.parseLong(environment.getProperty("token.expiration_time"))))
