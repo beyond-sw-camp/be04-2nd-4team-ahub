@@ -15,6 +15,7 @@ public class RequestRegist {
     private String fairTag3;
     private String fairLocation;
     private String fairArea;
+    private String ThumbImg;
 
     public RequestRegist() {
     }

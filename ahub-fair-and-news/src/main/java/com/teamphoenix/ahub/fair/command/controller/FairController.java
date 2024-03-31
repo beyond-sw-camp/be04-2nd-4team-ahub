@@ -1,5 +1,6 @@
 package com.teamphoenix.ahub.fair.command.controller;
 
+import com.google.gson.JsonObject;
 import com.teamphoenix.ahub.fair.command.dto.FairDTO;
 import com.teamphoenix.ahub.fair.command.service.FairService;
 import com.teamphoenix.ahub.fair.command.vo.RequestModify;
@@ -7,6 +8,9 @@ import com.teamphoenix.ahub.fair.command.vo.RequestRegist;
 import com.teamphoenix.ahub.fair.command.vo.ResponsePost;
 import com.teamphoenix.ahub.fair.command.vo.ResponseStatus;
 import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import org.apache.commons.io.FileUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,11 +18,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController(value = "fairCommandController")
 @RequestMapping("/fairs")
@@ -42,7 +50,6 @@ public class FairController {
 
         int writerCode = Integer.parseInt(idInfo.getAudience());
 
-        System.out.println("postInfo = " + postInfo);
         LocalDate startDate = LocalDate.parse(postInfo.getFairStartdate());
         LocalDate endDate = LocalDate.parse(postInfo.getFairEnddate());
 
@@ -79,6 +86,41 @@ public class FairController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED).body(respMessage);
+    }
+
+    // 썸머노트 동작시 이미지 처리 메소드
+    @PostMapping("/uploadSummernoteImageFile")
+    public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
+                                            HttpServletRequest request ) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+
+
+        String fileRoot = "C:\\SummerNote\\"; // 외부경로로 저장을 희망할때.
+
+        // 내부경로로 저장
+//        String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+//        String fileRoot = contextRoot+"resources/fileupload/";
+
+        String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+        String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+
+        File targetFile = new File(fileRoot + savedFileName);
+        try {
+            InputStream fileStream = multipartFile.getInputStream();
+            FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+            jsonObject.addProperty("url", fileRoot + savedFileName); // contextroot + resources + 저장할 내부 폴더명
+            jsonObject.addProperty("responseCode", "success");
+            System.out.println("jsonObject = " + jsonObject);
+
+        } catch (IOException e) {
+            FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+            jsonObject.addProperty("responseCode", "error");
+            e.printStackTrace();
+        }
+        String a = jsonObject.toString();
+        System.out.println("a = " + a);
+        return a;
     }
 
     // 기존 게시글 수정 핸들러 메소드

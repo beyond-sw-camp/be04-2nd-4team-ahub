@@ -24,6 +24,15 @@ spring:
             - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
 
         # Fair Service POST, PUT, DELETE
+        - id: fair-add
+          uri: lb://FAIR-AND-NEWS-SERVICE
+          predicates:
+            - Path=/board/fairs/uploadSummernoteImageFile
+            - Method=POST
+          filters:
+            - RewritePath=/board/fairs/(?<segment>.*), /fairs/$\{segment}
+
+        # Fair Service POST, PUT, DELETE
         - id: fair-modify
           uri: lb://FAIR-AND-NEWS-SERVICE
           predicates:
