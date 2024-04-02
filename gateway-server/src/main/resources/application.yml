@@ -13,6 +13,27 @@ spring:
     name: gateway-server
   cloud:
     gateway:
+      # Vue3 axios 연동 시 CORS 에러 해결을 위한 설정
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://192.168.0.108:5173"
+            allow-credentials: true
+            allowedHeaders:
+              - x-requested-with
+              - authorization
+              - content-type
+              - credential
+              - X-AUTH-TOKEN
+              - X-CSRF-TOKEN
+            allowedMethods:
+              - POST
+              - GET
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+
       routes:
         # Fair Service GET
         - id: fair-get
