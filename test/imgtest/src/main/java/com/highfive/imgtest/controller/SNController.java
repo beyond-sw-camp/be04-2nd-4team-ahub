@@ -1,10 +1,14 @@
 package com.highfive.imgtest.controller;
 
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +30,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 public class SNController {
 
     // 썸머노트 동작시 이미지 처리 메소드
@@ -65,39 +70,59 @@ public class SNController {
 
     @Value("${upload.path}")
     private String uploadPath; // 파일을 저장할 경로 설정
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+    @Value("${cloud.aws.region.static}")
+    private String region;
+
+    private final AmazonS3Client amazonS3Client;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFiles(@RequestParam("file") MultipartFile[] files) {
+    public ResponseEntity<List<String>> uploadFiles(@RequestParam("file") List<MultipartFile> files) {
+
+        System.out.println("files = " + files);
         List<String> urls = new ArrayList<>();
         for (MultipartFile file : files) {
             try {
-                String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-                System.out.println("uploadPath = " + uploadPath);
-                Path filepath = Paths.get(uploadPath, filename);
-                Files.copy(file.getInputStream(), filepath, StandardCopyOption.REPLACE_EXISTING);
-                String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/api/get_image/")
-                        .path(filename)
-                        .toUriString();
+                String fileName = file.getOriginalFilename();
+                String fileUrl = "https://" + bucket + ".s3." + region + ".amazonaws.com/" + fileName;
+                ObjectMetadata metadata = new ObjectMetadata();
+                metadata.setContentType(file.getContentType());
+                metadata.setContentLength(file.getSize());
+                amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
+                https://summernoteimage.s3.ap-northeast-2.amazonaws.com/pairi.webp
                 urls.add(fileUrl);
+
+//                String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+//                System.out.println("uploadPath = " + uploadPath);
+//                Path filepath = Paths.get(uploadPath, filename);
+//                Files.copy(file.getInputStream(), filepath, StandardCopyOption.REPLACE_EXISTING);
+//                String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                        .path("C:/imageuploadtest/")
+//                        .path(filename)
+//                        .toUriString();
+//                urls.add(fileUrl);
             } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
 
-        ObjectMapper mapper = new ObjectMapper();
-        String json;
-        try {
-            json = mapper.writeValueAsString(urls);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
         System.out.println("urls = " + urls);
-        System.out.println("json = " + json);
-        System.out.println(ResponseEntity.ok(urls));
-        return ResponseEntity.ok(json);
+        return ResponseEntity.ok(urls);
+
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json;
+//        try {
+//            json = mapper.writeValueAsString(urls);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//        System.out.println("urls = " + urls);
+//        System.out.println("json = " + json);
+//        System.out.println(ResponseEntity.ok(urls));
+//        return ResponseEntity.ok(json);
     }
 
 }

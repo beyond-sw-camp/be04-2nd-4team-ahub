@@ -1,6 +1,23 @@
 server:
   port: 10000
 
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 upload:
   path: C:\imageuploadtest\
+cloud:
+  aws:
+    s3:
+      bucket:
+    stack:
+      auto: false
+    credentials:
+      access-key:
+      secret-key:
+    region:
+      static:
+
