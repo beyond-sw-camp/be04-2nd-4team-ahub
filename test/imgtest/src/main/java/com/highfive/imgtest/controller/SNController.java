@@ -90,8 +90,17 @@ public class SNController {
                 metadata.setContentType(file.getContentType());
                 metadata.setContentLength(file.getSize());
                 amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
+
+                ObjectMapper mapper = new ObjectMapper();
+                String json;
+                try {
+                    json = mapper.writeValueAsString(fileUrl);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                }
                 https://summernoteimage.s3.ap-northeast-2.amazonaws.com/pairi.webp
-                urls.add(fileUrl);
+                urls.add(json);
 
 //                String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 //                System.out.println("uploadPath = " + uploadPath);
@@ -111,14 +120,7 @@ public class SNController {
         System.out.println("urls = " + urls);
         return ResponseEntity.ok(urls);
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        String json;
-//        try {
-//            json = mapper.writeValueAsString(urls);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
+
 //        System.out.println("urls = " + urls);
 //        System.out.println("json = " + json);
 //        System.out.println(ResponseEntity.ok(urls));
